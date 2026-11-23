@@ -60,8 +60,7 @@ h1,h2,h3{font-family:var(--hd);margin:0;line-height:1.15}button{font:inherit;col
 .hd{background:linear-gradient(135deg,color-mix(in srgb,var(--c) 10%,var(--sf)),var(--sf))}
 [hidden]{display:none!important}
 @media(max-width:560px){.top{grid-template-columns:auto 1fr}.top .tb{grid-column:1/-1;justify-content:space-between}.hero{padding:26px 20px}}
-</style><script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
-<script defer src="/_vercel/insights/script.js"></script>
+</style>
 </head><body>
 <div class="w" id="app"></div>
 <p class="ft w">Réalisé par <b>Mosalah le geek</b></p>
@@ -130,47 +129,4 @@ function subj(k){
   chips('lv',LV.filter(function(x){return all.some(function(d){return d.n===x})}),LN);
   var ks=Object.keys(KI).filter(function(x){return all.some(function(d){return d.k===x})});if(ks.length>1)chips('ki',ks);
   var ths=[];all.forEach(function(d){if(d.th&&ths.indexOf(d.th)<0)ths.push(d.th)});if(ths.length>1)chips('th',ths);
-  var L=all.filter(function(d){return(!st.lv||d.n===st.lv)&&(!st.s||d.s===st.s)&&(!st.ki||d.k===st.ki)&&(!st.th||d.th===st.th)});
-  var q=i.value.trim();if(q){var r=[];find(q,L,r,!!TX);L=r;if(q.length>2&&!TX)needTx(function(){draw()})}
-  if(!L.length){out.appendChild(h('p',{class:'mu'},'Aucun document.'));return}
-  var G=R?Object.keys(SJ).filter(function(x){return !SJ[x][3]}).map(function(x){return [SJ[x][1]+' '+SJ[x][0],L.filter(function(d){return d.s===x})]}):LV.map(function(v){return [LN[v]||v,L.filter(function(d){return d.n===v})]});
-  G.forEach(function(e){if(!e[1].length)return;out.appendChild(h('h2',{class:'lv',style:'--c:'+m[2]},e[0]+' · '+e[1].length));e[1].forEach(function(d){out.appendChild(row(d,k))})})}
- var tt;i.oninput=function(){st.q=i.value;clearTimeout(tt);tt=setTimeout(draw,180)};draw()}
-
-var TD={};
-function getT(id,cb){if(TD[id])return cb(TD[id]);window._t=function(i,a){TD[i]=a;if(i===id)cb(a)};var x=h('script',{src:'data/t/'+id+'.js'});x.onerror=function(){cb(null)};document.head.appendChild(x)}
-function fi(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/_{4,}|\.{6,}/g,'<span style="display:inline-block;min-width:80px;border-bottom:1.5px dotted var(--mu)">&nbsp;</span>')}
-var CO=[[/^(Définition|Théorème|Propriété|Règle|Formule|Loi)\s*[:\-]/i,'#0284c7','📘 Notion & règle'],[/^(Exemple|Application|Illustration|Exercice)\s*\d*\s*[:\-]/i,'#16a34a','💡 Application'],[/^(Remarque|Attention|Important|À retenir|Retenir|Note|NB|Synthèse)\s*[:\-!]?/i,'#d97706','⚠️ À retenir'],[/^(Citation|Auteur|Pensée)\s*[:\-]/i,'#7c3aed','💬 Référence']];
-function para(p,t){
- var c=t.trim();if(c.length<2||/^[-=_.]{4,}$/.test(c))return;
- if(c.length<110&&/^((I|II|III|IV|V|VI|VII|VIII|IX|X)[\.\-\)]\s|[A-E][\.\)]\s|(Chapitre|Partie|Section|Leçon|Séquence|Activité|Exercices?|Texte|Compréhension|Grammaire|Vocabulaire|Introduction|Conclusion)\b)/i.test(c)){var g=h('h3',{class:'sub'});g.innerHTML=fi(c);p.appendChild(g);return}
- for(var i=0;i<CO.length;i++)if(CO[i][0].test(c)){var b=h('div',{class:'co',style:'--b:'+CO[i][1]});b.appendChild(h('b',{},CO[i][2]));var q=h('p',{});q.innerHTML=fi(c);b.appendChild(q);p.appendChild(b);return}
- var q=h('p',{});q.innerHTML=fi(c);p.appendChild(q)}
-function view(k,id){
- var d=DOCS[id],m=SJ[k]||SJ.divers;ls('last',id);$.innerHTML='';
- $.appendChild(bar(function(){go(k)},m[2],'Retour à '+m[0]));
- var v=h('article',{class:'vw',style:'--c:'+m[2]});v.appendChild(h('small',{class:'mu'},m[1]+' '+m[0]+' · '+(LN[d.n]||d.n)+' · '+d.k));v.appendChild(h('h2',{},d.t));
- var u=encodeURI(d.f),a=h('div',{class:'ac',style:'--c:'+m[2]}),l=h('div',{class:'ac'});
- l.appendChild(h('a',{class:'btn p',href:u,target:'_blank',rel:'noopener'},'↗ Plein écran'));l.appendChild(h('a',{class:'btn',href:u,download:''},'⬇️ Télécharger le PDF'));
- var f=h('button',{class:'btn',type:'button'},isF(d.id)?'⭐ Favori':'☆ Ajouter aux favoris');f.onclick=function(){tog(d.id);f.textContent=isF(d.id)?'⭐ Favori':'☆ Ajouter aux favoris'};l.appendChild(f);
- var p=h('button',{class:'btn',type:'button'},'🖨️ Imprimer');p.onclick=function(){window.open(u)};l.appendChild(p);v.appendChild(l);
- var box=h('div',{});v.appendChild(box);
- function pdf(){box.innerHTML='';box.appendChild(h('iframe',{src:u,title:d.t,loading:'lazy'}));box.appendChild(h('p',{class:'nt'},'📄 Document original : cartes, figures et schémas intacts. Si le PDF ne s\'affiche pas sur ton téléphone, touche « Plein écran » ou « Télécharger le PDF ».'))}
- function txt(){box.innerHTML='';box.appendChild(h('p',{class:'nt'},'Chargement de la leçon…'));getT(d.id,function(a){box.innerHTML='';if(!a){pdf();return}
-  var art=h('div',{class:'rd',style:'--c:'+m[2]}),i=0,mb=h('button',{class:'btn p',type:'button',style:'--c:'+m[2]});
-  function more(){a.slice(i,i+120).forEach(function(t){para(art,t)});i+=120;mb.textContent='⬇️ Afficher la suite ('+Math.min(i,a.length)+' / '+a.length+')';mb.hidden=i>=a.length}
-  mb.onclick=more;box.appendChild(art);box.appendChild(mb);more();box.appendChild(h('p',{class:'nt',style:'margin-top:14px'},'Texte extrait du document. Pour les tableaux, cartes et schémas, ouvre l\'onglet « PDF original ».'))})}
- if(d.r){var tb=h('div',{class:'tabs',style:'--c:'+m[2]}),b1=h('button',{class:'btn p',type:'button'},'📖 Lire dans la page'),b2=h('button',{class:'btn',type:'button'},'📄 PDF original');
-  b1.onclick=function(){b1.className='btn p';b2.className='btn';txt()};b2.onclick=function(){b2.className='btn p';b1.className='btn';pdf()};tb.appendChild(b1);tb.appendChild(b2);v.insertBefore(tb,box);txt()}else pdf();
- var sib=DOCS.filter(function(x){return inK(x,k)&&x.n===d.n}),ix=sib.indexOf(d),n=h('div',{class:'ac',style:'margin-top:16px;--c:'+m[2]});
- if(ix>0){var b=h('button',{class:'btn',type:'button'},'← Précédent');b.onclick=function(){go(k+'~'+sib[ix-1].id)};n.appendChild(b)}else n.appendChild(h('span'));
- if(ix>-1&&ix<sib.length-1){var c=h('button',{class:'btn p',type:'button'},'Suivant →');c.onclick=function(){go(k+'~'+sib[ix+1].id)};n.appendChild(c)}
- v.appendChild(n);$.appendChild(v);}
-function go(x){location.hash=x}
-function route(){
- var x=location.hash.slice(1).split('~'),k=x[0];window.scrollTo(0,0);
- if(x[1]!=null&&DOCS[+x[1]])view(k,+x[1]);else if(SJ[k]){st.lv=st.ki=st.th=st.s='';st.q='';subj(k)}else home()}
-window.addEventListener('hashchange',route);
-if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0)navigator.serviceWorker.register('sw.js').catch(function(){});
-var s0=h('script',{src:'data/index.js'});s0.onload=route;s0.onerror=function(){$.textContent='Erreur de chargement des données.'};document.head.appendChild(s0);
-</script></body></html>
+  var L=all.filter(function(d){return(!st.lv||d.n===st.lv)&&(!st.s||d.s===st.s)&&(!st.ki||d.k===st.ki)&&(!
